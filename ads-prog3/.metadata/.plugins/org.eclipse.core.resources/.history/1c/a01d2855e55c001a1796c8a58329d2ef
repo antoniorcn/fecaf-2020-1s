@@ -1,0 +1,16 @@
+package edu.curso;
+
+import javax.servlet.GenericServlet;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+import javax.servlet.annotation.WebServlet;
+@WebServlet("/imc")
+public class CalculoIMC extends GenericServlet {
+	public void service(
+			ServletRequest req, 
+			ServletResponse res) {
+		String peso = req.getParameter("PESO");
+		System.out.println("Calculando IMC");
+		System.out.println("Peso: " + peso);
+	}
+}

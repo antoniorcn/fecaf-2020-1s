@@ -1,0 +1,13 @@
+package edu.curso;
+
+import javax.servlet.GenericServlet;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+import javax.servlet.annotation.WebServlet;
+@WebServlet("/teste")
+public class Teste extends GenericServlet {
+	public void service(ServletRequest req,
+			ServletResponse res) {
+		System.out.println("Executado ... ");
+	}
+}
