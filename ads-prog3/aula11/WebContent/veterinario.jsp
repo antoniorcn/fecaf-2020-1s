@@ -15,8 +15,15 @@
 				List<Veterinario> lista = 
 					(List<Veterinario>)session.getAttribute("LISTA");
 				String msg = (String)session.getAttribute("MENSAGEM");
-				if (msg != null) { 
+				if (msg != null && msg.contains("Erro")) { 
 			%>
+				<div class="alert alert-danger alert-dismissible fade show" role="alert">
+  					<strong>Problemas na operação</strong> <%=msg%>
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+			<% } else if (msg != null && !msg.contains("Erro")) { %>
 				<div class="alert alert-success alert-dismissible fade show" role="alert">
   					<strong>Operação realizada</strong> <%=msg%>
 					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -24,8 +31,8 @@
 					</button>
 				</div>	
 			<%
-					session.setAttribute("MENSAGEM", null);
 				}
+				session.setAttribute("MENSAGEM", null);
 			%>
 			<form action="./veterinarioController" method="post">
 			
@@ -60,8 +67,8 @@
 				</div>
 			
 				<div class="form-group">
-					<button class="btn btn-primary" type="submit">Adicionar</button>
-					<button class="btn btn-primary" type="submit">Pesquisar</button>
+					<button class="btn btn-primary" type="submit" name="cmd" value="adicionar">Adicionar</button>
+					<button class="btn btn-primary" type="submit" name="cmd" value="pesquisar">Pesquisar</button>
 				</div>
 			
 			</form>

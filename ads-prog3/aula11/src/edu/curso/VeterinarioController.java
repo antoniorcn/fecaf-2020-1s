@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/veterinarioController")
 public class VeterinarioController extends HttpServlet{
 	private List<Veterinario> lista = new ArrayList<>();
+	private VeterinarioDAO vdao = new VeterinarioDAO();
 	public void doPost(HttpServletRequest request, HttpServletResponse response) 
 			throws IOException {
 		
@@ -20,18 +21,24 @@ public class VeterinarioController extends HttpServlet{
 		String crv = request.getParameter("crv");
 		String especialidade = request.getParameter("especialidade");
 		String strValor = request.getParameter("valor");
-		
-		Veterinario vet = new Veterinario();
-		vet.setNome(nome);
-		vet.setCrv(crv);
-		vet.setEspecialidade(especialidade);
-		vet.setPrecoHora(Double.parseDouble(strValor));
-		
-		lista.add(vet);
-		System.out.printf("Lista possui %d elementos \n", lista.size());
-		String mensagem = "Veterinario cadastrado com sucesso";
-		//PrintWriter out = response.getWriter();
-		//out.println(mensagem);
+		String cmd = request.getParameter("cmd");
+		String mensagem = null;
+		if ("adicionar".equals(cmd)) { 
+			Veterinario vet = new Veterinario();
+			vet.setNome(nome);
+			vet.setCrv(crv);
+			vet.setEspecialidade(especialidade);
+			vet.setPrecoHora(Double.parseDouble(strValor));
+			try { 
+				vdao.adicionar(vet);
+				mensagem = "Veterinario cadastrado com sucesso";
+			} catch(Exception e) { 
+				mensagem = "Erro ao gravar o veterinario " + e.getMessage();	
+			}		
+		} else if ("pesquisar".equals(cmd)) { 
+			lista = vdao.pesquisarPorNome(nome);
+		}
+
 		request.getSession().setAttribute("MENSAGEM", mensagem);
 		request.getSession().setAttribute("LISTA", lista);
 		response.sendRedirect("./veterinario.jsp");

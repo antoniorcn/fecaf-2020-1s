@@ -1,5 +1,11 @@
 package edu.curso;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
 public class Veterinario {
 	private long id;
 	private String nome;
@@ -7,6 +13,8 @@ public class Veterinario {
 	private String especialidade;
 	private double precoHora;
 	
+	@Id
+	@GeneratedValue
 	public long getId() {
 		return id;
 	}
@@ -14,6 +22,7 @@ public class Veterinario {
 		this.id = id;
 	}
 	
+	@Column(length = 100)
 	public String getNome() {
 		return nome;
 	}
@@ -21,6 +30,7 @@ public class Veterinario {
 		this.nome = nome;
 	}
 	
+	@Column(length = 10, unique = true, nullable = false)
 	public String getCrv() {
 		return crv;
 	}
@@ -28,6 +38,7 @@ public class Veterinario {
 		this.crv = crv;
 	}
 	
+	@Column(length = 20)
 	public String getEspecialidade() {
 		return especialidade;
 	}
