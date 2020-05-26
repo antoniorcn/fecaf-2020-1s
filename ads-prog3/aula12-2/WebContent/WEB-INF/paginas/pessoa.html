@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="ISO-8859-1">
+		<title>Dados de Pessoas</title>
+	</head>
+	<body>
+		<h1>Dados de uma pessoa</h1>
+		<label>Nome: </label>
+		<p th:text="${dados.nome}"></p>
+		<label>Nascimento: </label>
+		<p th:text="${dados.nascimento}"></p>
+		<label>Email: </label>
+		<p th:text="${dados.email}"></p>		
+	</body>
+</html>
