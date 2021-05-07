@@ -3,7 +3,7 @@
  */
 
 import {AppRegistry} from 'react-native';
-import TaskList from './src/TaskList';
+import NavigatorPrincipal from './src/NavigatorPrincipalTabs';
 import {name as appName} from './app.json';
 
-AppRegistry.registerComponent(appName, () => TaskList);
+AppRegistry.registerComponent(appName, () => NavigatorPrincipal);
